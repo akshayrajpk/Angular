@@ -1,0 +1,23 @@
+<mat-form-field class="form-field-wrap" appearance="fill">
+    <mat-label>{{ LabelText }}</mat-label>
+    <mat-select [formControl]="selections" multiple>
+      <mat-select-trigger>
+          <span
+            *ngIf="(selections.value?.length) > 0"
+          >
+          {{selections.value[0]}}
+        </span>        
+        <span
+          *ngIf="(selections.value?.length || 0) > 1"
+          class="additional-selection"
+        >
+          (+{{ (selections.value?.length || 0) - 1 }}
+          {{ selections.value?.length === 2 ? "other" : "others" }})
+        </span>
+      </mat-select-trigger>
+      <mat-option #allSelected (click)="toggleAllSelection()" [value]="0">Deselect All</mat-option>
+      <mat-option *ngFor="let selection of selectionList" [value]="selection">{{
+        selection
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>

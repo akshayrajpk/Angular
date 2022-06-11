@@ -1,0 +1,95 @@
+<div class="row">
+    <mat-form-field class="search-form-field" appearance="outline">
+      <mat-label>Search Name</mat-label>
+      <input matInput type="text" [formControl]="searchName" />
+      <button
+        class="transparent-button"
+        *ngIf="searchName.value"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="clearNameSearchField()"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+      <button class="transparent-button" matSuffix type="button" mat-icon-button>
+        <mat-icon class="dark-icon">search</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field class="search-form-field" appearance="outline">
+        <mat-label>Search Genre</mat-label>
+        <input matInput type="text" [formControl]="searchGenre" />
+        <button class="transparent-button" matSuffix type="button" mat-icon-button>
+          <mat-icon class="dark-icon">search</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <mat-form-field class="search-form-field" appearance="outline">
+        <mat-label>Search Duration</mat-label>
+        <input matInput type="text" [formControl]="searchDuration" />
+        <button
+          class="transparent-button"
+          *ngIf="searchDuration.value"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="clearDurationSearchField()"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+        <button class="transparent-button" matSuffix type="button" mat-icon-button>
+          <mat-icon class="dark-icon">search</mat-icon>
+        </button>
+      </mat-form-field>
+</div>
+    
+  <app-dropdown-multiselect
+    #genreSelectionDropdown
+    [LabelText]="'Genre'"
+    [selectionList]="getGenre()"
+    (selectedDropDownItems)="recieveSelectedGenre($event)"
+    [formControl]="selectedGenre"
+    class="filter-dropdown-right"
+    ngDefaultControl
+  ></app-dropdown-multiselect>
+
+  <app-dropdown-multiselect
+    [LabelText]="'Year'"
+    [selectionList]="getYears()"
+    (selectedDropDownItems)="recieveSelectedYears($event)"
+    [formControl]="selectedYears"
+    class="filter-dropdown-right"
+    ngDefaultControl
+  ></app-dropdown-multiselect>
+
+  <app-dropdown-multiselect
+    [LabelText]="'Certificate'"
+    [selectionList]="getCertificates()"
+    (selectedDropDownItems)="recieveSelectedCertificates($event)"
+    [formControl]="selectedCertificates"
+    class="filter-dropdown-right"
+    ngDefaultControl
+  ></app-dropdown-multiselect>
+
+  <app-dropdown-multiselect
+    [LabelText]="'Ratings'"
+    [selectionList]="getRatings()"
+    (selectedDropDownItems)="recieveSelectedRatings($event)"
+    [formControl]="selectedCertificates"
+    class="filter-dropdown-right"
+    ngDefaultControl
+  ></app-dropdown-multiselect>
+  
+  <ng-container *ngIf="items$ | async as packageTemplate">
+    <mat-grid-list role="list" cols="4" rowHeight="2:1.5" tabindex="0">
+      <mat-grid-tile
+        *ngFor="let item of packageTemplate; first as isFirst; last as isLast"
+        class="list-item"
+        role="listitem"
+        tabindex="0"
+      >
+        <app-movie-list-element [movieDetails]="item"></app-movie-list-element>
+    </mat-grid-tile>
+    </mat-grid-list>
+  </ng-container>

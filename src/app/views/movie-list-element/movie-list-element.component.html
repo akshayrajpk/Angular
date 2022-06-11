@@ -1,0 +1,27 @@
+<div class="movie-list-element-wrap" *ngIf="movieDetails">
+    <div class="section-wrap">
+        <span class="name">
+            {{movieDetails.name}}
+        </span>
+        <span >({{movieDetails.certificate}})</span>
+    </div>
+    <div class="section-wrap"> 
+        <span>{{movieDetails.genre}}</span>
+        <span class="span-divider"> - </span>
+        <span>{{movieDetails.year}}</span>
+    </div>
+    <div class="section-wrap">
+        <span>Director: {{movieDetails.director}}</span>
+    </div>
+    <div class="section-wrap">
+        <span>Production: {{movieDetails.production}}</span>
+    </div>
+    <div class="section-wrap">
+        <span class="icon"><mat-icon>schedule</mat-icon> </span>
+        <span class="aligned-with-icon">{{movieDetails.duration}}m</span>
+    </div>
+    <div class="section-wrap">
+        <span class="icon"><mat-icon>star</mat-icon> </span>
+        <span class="aligned-with-icon">{{movieDetails.rating}}</span>
+    </div>
+<div>
