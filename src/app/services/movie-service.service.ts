@@ -24,7 +24,7 @@ export class MovieServiceService {
 
   getList(forceUpdate: boolean, criteria: SearchCriteria): Observable<any> {
     if (forceUpdate) {
-      return this.http.get(this.BaseUrl+'/getMovie').pipe(
+      return this.http.get(this.BaseUrl+'/getMovieList').pipe(
         tap((res) => (this.latestFetchResults = of(res))),
         map((response) => {
           return response;
