@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.1.
 
-## Run Both Backend And Froentend Serverc
+## Run Both Backend And Froentend Server
 
 Run `npm run all-servers` for dev server and express server. Navigate to `http://localhost:4200/`. Express server will run at `http://localhost:5000/`.
 ## Development server
